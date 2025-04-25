@@ -32,8 +32,13 @@ jobs:
 
       - name: Determine Version Tag
         id: version
-        run: echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-
+        run: |
+          if [ -z "${{ github.event.release.tag_name }}" ]; then
+            echo "VERSION=latest" >> $GITHUB_ENV
+          else
+            echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi
+    
       - name: Define Image Name
         run: echo "IMAGE_NAME=${{ env.REGISTRY }}/${{ github.repository }}" >> $GITHUB_ENV
 
