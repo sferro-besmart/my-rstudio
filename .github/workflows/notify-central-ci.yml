@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Call central pipeline
         env:
-          TARGET_REPO: cibot/ci-pipeline
+          TARGET_REPO: bsm-cibot/bsm-ci-pipeline
           PAT: ${{ secrets.CI_DISPATCH_TOKEN }}  # see below
         run: |
           curl -s -X POST \
